@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import java.io.UnsupportedEncodingException;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button button1, button2;
     TextView txt1, txt2;
+    EditText stringa, key;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +34,10 @@ public class MainActivity extends AppCompatActivity {
         button2 = findViewById(R.id.button_2);
 
         txt1 = findViewById(R.id.txt_1);
-        txt2= findViewById(R.id.txt_2);
+        txt2 = findViewById(R.id.txt_2);
+
+        stringa = findViewById(R.id.editText_stringa);
+        key = findViewById(R.id.editText_key);
 
         EncryptionUtils res = new EncryptionUtils();
 
@@ -41,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 try {
-                    txt1.setText(res.encrypt("fabio","fabius@"));
+                    txt1.setText(res.encrypt(stringa.getText().toString(),key.getText().toString()));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -54,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View view) {
 
                 try {
-                    txt2.setText(res.decrypt(txt1.getText().toString(),"fabius@"));
+                    txt2.setText(res.decrypt(stringa.getText().toString(),key.getText().toString()));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
